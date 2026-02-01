@@ -1,0 +1,9 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.generator": "Ninja",
+    "cmake.configureSettings": {
+        "Boost_USE_STATIC_LIBS": "ON",
+        "Boost_USE_STATIC_RUNTIME": "ON"
+    },
+    "cmake.configureOnOpen": true
+}
