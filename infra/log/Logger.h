@@ -136,6 +136,8 @@ public:
     void SetAsyncMode(bool async = true, size_t queue_size = 10000);
     // 添加输出器
     void AddAppender(std::unique_ptr<LogAppender> appender);
+    // 清除输出器
+    void ClearAppender();
     // 设置全局日志级别（低于该级别的日志不输出）
     void SetLevel(LogLevel level);
     // 对外接口：处理日志输出

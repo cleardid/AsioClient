@@ -183,6 +183,14 @@ void Logger::AddAppender(std::unique_ptr<LogAppender> appender)
     this->_appenders.push_back(std::move(appender));
 }
 
+// 清除输出器
+void Logger::ClearAppender()
+{
+    if (this->_appenders.empty())
+        return;
+    this->_appenders.clear();
+}
+
 // 设置全局日志级别（低于该级别的日志不输出）
 void Logger::SetLevel(LogLevel level)
 {

@@ -24,6 +24,9 @@ public:
     // 4. 主动发送 - 发送消息
     void SendMsg(const std::string &toUser, const std::string &msg);
 
+    // 5. 获取在线用户
+    void GetOnLineUser();
+
 private:
     std::string _myName;
 };

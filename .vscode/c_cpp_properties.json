@@ -1,21 +1,25 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/opt/homebrew/opt/boost@1.85",
+                "/opt/homebrew/opt/boost@1.85/include",
+                "/opt/homebrew/opt/mysql@8.0",
+                "/opt/homebrew/opt/mysql@8.0/include",
+                "/opt/homebrew/opt/sqlite",
+                "/opt/homebrew/opt/sqlite/include",
+                "/opt/homebrew/opt/openssl@3",
+                "/opt/homebrew/opt/openssl@3/include",
+                "/opt/homebrew/opt/zlib",
+                "/opt/homebrew/opt/zlib/include"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE",
-                "ASIOCLIENT_EXPORTS"
-            ],
-            "windowsSdkVersion": "10.0.26100.0",
-            "compilerPath": "D:/ProgramData/CPPSoft/msys2/mingw64/bin/g++.exe",
+            "defines": [],
+            "compilerPath": "/opt/homebrew/bin/g++-15",
             "intelliSenseMode": "gcc-x64",
             "cppStandard": "c++20",
-            "cStandard": "c17"
+            "cStandard": "c23"
         }
     ],
     "version": 4

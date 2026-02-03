@@ -29,11 +29,20 @@ CClient::~CClient()
     Close();
 }
 
-void CClient::Init()
+void CClient::Init(const char *logFile)
 {
     // 如果已经在执行，则直接返回
     if (_work)
         return;
+
+    // 设置日志路径
+    if (logFile)
+    {
+        // 首先删除所有的日志输出，避免与之前的冲突
+        Logger::GetInstance().ClearAppender();
+        // 添加新的文件输出
+        Logger::GetInstance().AddAppender(std::make_unique<FileAppender>(std::string(logFile)));
+    }
 
     // 确保 ioc 状态正确
     if (_ioc.stopped())
@@ -63,11 +72,11 @@ void CClient::RunContext()
     _ioc.run();
 }
 
-void CClient::Connect(const std::string &ip, const uint16_t port, const int timeout)
+void CClient::Connect(const std::string &ip, const uint16_t port, const int timeout, const char *logFile)
 {
     // 初始化
     if (!_work)
-        Init();
+        Init(logFile);
 
     // 先关闭旧的心跳，防止上次连接遗留的定时器还在跑
     if (_heartService)
@@ -129,7 +138,7 @@ void CClient::Close()
         _session = nullptr;
     }
 
-    LOG_INFO << "Client close" << std::endl;
+    LOG_INFO << "Client close." << std::endl;
 }
 
 // 启动心跳服务
@@ -168,6 +177,18 @@ void CClient::SendChat(const std::string &toUser, const std::string &msg)
     if (_chatService)
     {
         _chatService->SendMsg(toUser, msg);
+    }
+    else
+    {
+        LOG_ERROR << "CommunicationService not init" << std::endl;
+    }
+}
+
+void CClient::GetOnLineUser()
+{
+    if (_chatService)
+    {
+        _chatService->GetOnLineUser();
     }
     else
     {

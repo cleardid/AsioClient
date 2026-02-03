@@ -21,8 +21,8 @@ class ASIO_API CClient
 public:
     static CClient &GetInstance();
 
-    void Init();
-    void Connect(const std::string &ip, const uint16_t port, const int timeout);
+    void Init(const char *logFile);
+    void Connect(const std::string &ip, const uint16_t port, const int timeout, const char *logFile = nullptr);
     void Send(const uint16_t serviceId, const uint16_t cmdId, const std::string &data);
     void Close();
 
@@ -33,6 +33,7 @@ public:
     // 为 DLL 调用的通信接口
     void Login(const std::string &name);
     void SendChat(const std::string &toUser, const std::string &msg);
+    void GetOnLineUser();
 
     // 给 Session 用的
     void OnMessage(std::shared_ptr<MsgNode> msg);

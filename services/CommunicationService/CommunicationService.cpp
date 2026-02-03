@@ -65,3 +65,8 @@ void CommunicationService::SendMsg(const std::string &toUser, const std::string 
         LOG_ERROR << "CommunicationService::SendMsg exception: " << e.what() << std::endl;
     }
 }
+
+void CommunicationService::GetOnLineUser()
+{
+    CClient::GetInstance().Send(SERVICE_COMMUNICATION, COMMUINICATION_SHOW, "Get OnLine Clients.");
+}
